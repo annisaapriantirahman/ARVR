@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
+
+      <!-- Environment: Dunia VR dengan tema -->
+      <a-entity environment="preset: yavapai"></a-entity>
+
+      <!-- Objek tambahan di environment 1 -->
+      <!-- Objek dengan Texture -->
+      <a-entity
+        gltf-model="#fox"
+        position="0 0 -5"
+        scale="0.015 0.015 0.015"
+        rotation="0 -90 0"
+        cursor-listener
+      ></a-entity>
+
+      <!-- Link untuk kembali ke environment sebelumnya -->
+      <a-entity
+        geometry="primitive: box; width: 3; height: 3; depth: 3"
+        material="color: blue"
+        position="-5 0 -10"
+        event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2"
+        event-set__leave="_event: mouseleave; scale: 1 1 1"
+        link="href: index.html"
+      ></a-entity>
+
+      <!-- Asset: Model Fox -->
+      <a-asset>
+        <a-asset-item id="fox" src="https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/main/2.0/Fox/glTF/Fox.gltf"></a-asset-item>
+      </a-asset>
+
+    </a-scene>
+  </body>
+</html>

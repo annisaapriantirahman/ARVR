@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+  </head>
+  
+  <body>
+    <a-scene>
+
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
+      
+      <!-- Environment: Dunia VR dengan tema -->
+      <a-entity environment="preset: japan"></a-entity>
+
+      <!-- Link 1: Pindah ke environment baru -->
+      <a-entity
+        geometry="primitive: box; width: 3; height: 3; depth: 3"
+        material="color: red"
+        position="-5 0 -10"
+        event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2"
+        event-set__leave="_event: mouseleave; scale: 1 1 1"
+        link="href: environment1.html"
+      ></a-entity>
+
+      <!-- Link 2: Pindah ke environment baru -->
+      <a-entity
+        geometry="primitive: box; width: 3; height: 3; depth: 3"
+        material="color: yellow"
+        position="0 0 -10"
+        event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2"
+        event-set__leave="_event: mouseleave; scale: 1 1 1"
+        link="href: environment2.html"
+      ></a-entity>
+
+      <!-- Link 3: Pindah ke AR -->
+      <a-entity
+        geometry="primitive: box; width: 3; height: 3; depth: 3"
+        material="color: green"
+        position="5 0 -10"
+        event-set__enter="_event: mouseenter; scale: 1.2 1.2 1.2"
+        event-set__leave="_event: mouseleave; scale: 1 1 1"
+        link="href: indexuts.html"
+      ></a-entity>
+
+    </a-scene>
+
+    <script>
+      AFRAME.registerComponent("cursor-listener", {
+        init: function () {
+          var el = this.el;
+
+          el.addEventListener("mouseenter", function () {
+            el.setAttribute("scale", "1.2 1.2 1.2");
+          });
+
+          el.addEventListener("mouseleave", function () {
+            el.setAttribute("scale", "1 1 1");
+          });
+
+          el.addEventListener("click", function () {
+            console.log("diklik!");
+          });
+        },
+      });
+    </script>
+  </body>
+</html>
